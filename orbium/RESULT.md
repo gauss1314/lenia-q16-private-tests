@@ -30,3 +30,11 @@ repository (D-062 self-imposed rules 3 and 4).
 Platform: P1 = Linux x86-64, rustc 1.97.0, release build with overflow checks.
 Threads 1 and 3 give the same chain over 512 steps
 (sha256:20b469d4edb4c879f04f0ff21d2dd191ff34dc0848ca6e8a2b0858117fab877b).
+
+## Explorer link (founder play-testing)
+
+Open the explorer (code repo `web/explorer/`) with:
+`#N=256&R=13&T=10&mu=0.15&sigma=0.015&beta=1/1`, then click "随机汤" with
+size 38 and amplitude 0.96 (or click the field a few times) until a glider
+forms. GPU float32 matched float64 on the cultured Orbium for 200 steps
+(mass 71.35192 vs 71.35194; max |diff| 7e-5), 2026-10-31.
