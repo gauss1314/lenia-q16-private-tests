@@ -14,7 +14,7 @@ g = lambda a, b: q[np.clip(a, 0, N0 - 1), np.clip(b, 0, N0 - 1)] * ((a >= 0) & (
 A = g(y0, x0) * (1 - fy) * (1 - fx) + g(y0 + 1, x0) * fy * (1 - fx) + g(y0, x0 + 1) * (1 - fy) * fx + g(y0 + 1, x0 + 1) * fy * fx
 def fk(K):
     pad = np.zeros((n, n)); pad[:2 * R + 1, :2 * R + 1] = K; return np.fft.fft2(np.roll(pad, (-R, -R), (0, 1)))
-Kf = kernel_f64(R, [(1, 1)]); fKf = fk(Kf); fK = fk(np.round(Kf * 65536) / 65536 if var == 'Q16' else Kf)
+Kf = kernel_f64(R, [(1, 1)]); fKf = fk(Kf); fK = fk(np.round(Kf * 2 ** int(var[1:])) / 2 ** int(var[1:]) if var.startswith('Q') else Kf)
 for _ in range(50 * T):
     A = np.clip(A + growth(np.real(np.fft.ifft2(np.fft.fft2(A) * fKf)), mu, sg) / T, 0, 1)
 e = np.exp(2j * np.pi * np.arange(n) / n)
