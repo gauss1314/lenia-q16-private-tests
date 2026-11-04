@@ -9,3 +9,7 @@
 - Cause: kernel weight quantisation at total 2^16. At R = 39 there are ~4800 taps, mean weight ~14,
   so the rounding error per tap is a few percent and is anisotropic. Input to D-022 / D-028 (W3).
 - R sweep (rsweep.py): see rsweep.txt.
+
+## 2026-11-04: real integer reference with kernel total 2^20 (branch exp/kernel-2p20)
+
+ORB R=39, 2000 TU: heading 141.5 -> 142.9 deg and stable (heading_k20.txt). float64 141.5 -> 140.8. Final difference about 2 deg (tolerance 5). With 2^16 it locked at 180.
